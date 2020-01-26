@@ -1,0 +1,25 @@
+{
+  "name": "aeropept-website",
+  "version": "0.0.1",
+  "description": "eCommerce Website Specializing in Sarms",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dhd5076/StoreProject.git"
+  },
+  "author": "Dylan Dunn",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dhd5076/StoreProject/issues"
+  },
+  "homepage": "https://github.com/dhd5076/StoreProject#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-session": "^1.17.0",
+    "mongoose": "^5.8.9",
+    "pug": "^2.0.4"
+  }
+}
