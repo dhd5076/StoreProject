@@ -17,6 +17,9 @@ app.set('view engine', 'pug')
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/', function(req, res){
+    res.send("Coming Soon - AeroPept");
+});
 app.use('/', indexRouter);
 
 mongoose.connect('mongodb://localhost/AeroPept', {useNewUrlParser: true, useUnifiedTopology: true});
