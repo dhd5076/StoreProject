@@ -7,7 +7,6 @@ html
     link(rel="stylesheet" type="text/css" href="/stylesheets/style.css" )
   body
     .container
-      .alert.alert-secondary(role="alert") Limited Time Offer! Use code BGHGD At Checkout
       nav.navbar.navbar-light.bg-light.navbar-expand-sm
         a.navbar-brand(href="/")
           img(height="64px" src="/images/logo.png")
@@ -23,7 +22,9 @@ html
               a.nav-link(href="/faq") Contact
           ul.navbar-nav
             li.nav-item.m-1.text-center
-              a.btn.btn-secondary(href="/reset") My Account
+              a.btn.btn-secondary.mr-2(href="/reset") My Account
+              a.btn.btn-secondary(href="/") 
+                i.fas.fa-shopping-cart
             
       .container.mt-3
         block content
