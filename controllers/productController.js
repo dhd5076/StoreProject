@@ -1,5 +1,5 @@
 exports.list_product = function(req, res) {
-    res.send("Product List");
+    res.render('shop');
 }
 
 exports.view_product = function(req, res) {

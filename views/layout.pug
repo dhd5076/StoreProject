@@ -15,16 +15,23 @@ html
         div.collapse.navbar-collapse.justify-content-between(id="nav1")
           ul.navbar-nav
             li.nav-item.m-1.text-center
-              a.nav-link(href="/faq") Shop
+              a.nav-link(href="/shop") Shop
             li.nav-item.m-1.text-center
               a.nav-link(href="/faq") FAQ
             li.nav-item.m-1.text-center
               a.nav-link(href="/faq") Contact
+            if loggedIn
+              li.nav-item.m-1.text-center
+                a.nav-link(href="/orders") Orders
           ul.navbar-nav
             li.nav-item.m-1.text-center
-              a.btn.btn-secondary.mr-2(href="/reset") My Account
-              a.btn.btn-secondary(href="/") 
-                i.fas.fa-shopping-cart
+              if user
+                if user.username == 'admin'
+                  a.btn.btn-danger.mr-2(href="/admin-dashboard") Admin
+              a.btn.btn-secondary.mr-2(href="/account") My Account
+              a.btn.btn-secondary(href="/cart") 
+                i.fas.fa-shopping-cart.mr-2
+                span.badge.badge-info 2
             
       .container.mt-3
         block content
