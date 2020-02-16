@@ -1,0 +1,33 @@
+extends layout
+
+block content
+    .row.mt-0
+        .col-3
+            .nav.flex-column.nav-pills
+                a.nav-link.active.justify-content-between.d-flex.align-items-center(href="#users" data-toggle="list")
+                    span
+                        span Users
+                    span.badge.badge-pill.badge-primary 11
+                a.nav-link.justify-content-between.d-flex.align-items-center(href="#products" data-toggle="pill")
+                    span Products
+                    span.badge.badge-pill.badge-primary 3
+                a.nav-link.justify-content-between.d-flex.align-items-center(href="#orders" data-toggle="list")
+                    span Orders
+                    span.badge.badge-pill.badge-primary 128
+                a.nav-link.justify-content-between.d-flex.align-items-center(href="#settings" data-toggle="list")
+                    span Settings
+                    span.fas.fa-cogs
+        .col-9
+            .tab-content
+                .tab-pane.active(id="users") 
+                    .col-12
+                        h1 Users
+                        ul.list-group
+                            each account in users
+                                li.list-group-item.justify-content-between
+                                    span=account.firstname + ' ' + account.lastname
+                                    if account.username == 'admin'
+                                        span.badge.badge-pill.badge-danger.ml-2 Admin
+                .tab-pane(id="products") Data 2
+                .tab-pane(id="orders") Data 3
+                .tab-pane(id="settings") Data 4

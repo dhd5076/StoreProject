@@ -1,0 +1,25 @@
+extends layout
+
+block content
+    .row 
+        .col-lg-3.col-0
+        .col-lg-6
+            p.h3.text-center.font-weight-bold.pb-4 Cart
+    .row
+        table.table
+            thead.bg-light
+                tr
+                    th Product
+                    th.text-right Price
+                    th.text-right Quantity
+                    th.text-right Subtotal
+            tbody
+                tr
+                    th Ostarine
+                    td.text-right $39.99
+                    td.text-right 1
+                    td.text-right $39.99
+    .row
+        .col-12.pr-1.pt-2
+            button.btn.btn-success.float-right.btn-md Checkout
+
