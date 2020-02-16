@@ -6,6 +6,9 @@ var faqRouter = require('./faq');
 var contactRouter = require('./contact');
 var accountRouter = require('./account');
 var cartRouter = require('./cart');
+var adminRouter = require('./admin')
+
+var authMiddleware = require('../middleware/auth');
 
 router.use('/shop', shopRouter);
 
@@ -17,11 +20,10 @@ router.use('/account', accountRouter);
 
 router.use('/cart', cartRouter);
 
+router.use('/admin', authMiddleware.requiresAdmin, adminRouter);
+
 router.use('/', function(req, res){
-    if(req.session.user) {
-        res.render('index', {user: req.session.user})
-    }
-        res.render('index');
+    res.render('index', {user: req.session.user})
 });
 
 module.exports = router;

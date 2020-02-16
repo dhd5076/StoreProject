@@ -17,7 +17,8 @@
   },
   "homepage": "https://github.com/dhd5076/StoreProject#readme",
   "dependencies": {
-    "bcrypt": "^3.0.7",
+    "bcrypt": "^3.0.8",
+    "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
     "express-session": "^1.17.0",
     "mongoose": "^5.8.9",
