@@ -7,6 +7,7 @@ var contactRouter = require('./contact');
 var accountRouter = require('./account');
 var cartRouter = require('./cart');
 var adminRouter = require('./admin')
+var productRouter = require('./product');
 
 var authMiddleware = require('../middleware/auth');
 
@@ -21,6 +22,8 @@ router.use('/account', accountRouter);
 router.use('/cart', cartRouter);
 
 router.use('/admin', authMiddleware.requiresAdmin, adminRouter);
+
+router.use('/product', productRouter)
 
 router.use('/', function(req, res){
     res.render('index', {user: req.session.user})

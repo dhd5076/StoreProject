@@ -25,7 +25,7 @@ exports.login_user = function(req, res) {
                     res.redirect('/');
                 } else {
                     console.log(user.password + ":" + req.body.password);
-                    res.render('login', {errmsg: 'Username or password were incorrect, password', user: req.session.user})
+                    res.render('login', {errmsg: 'Username or password were incorrect', user: req.session.user})
                 }
             });
         } else {

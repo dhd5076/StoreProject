@@ -28,6 +28,27 @@ block content
                                     span=account.firstname + ' ' + account.lastname
                                     if account.username == 'admin'
                                         span.badge.badge-pill.badge-danger.ml-2 Admin
-                .tab-pane(id="products") Data 2
+                .tab-pane(id="products") 
+                    .col-12
+                        row.justify-content-between.d-flex
+                            h1 Products
+                            button.btn.btn-success(data-toggle="modal" data-target="#newProductDialog") New Product
+                        row
+                            ul.list-group.mt-2
+                                each product in products
+                                    li.list-group-item=product.title
+                            
+                .tab-pane(id="products") 
                 .tab-pane(id="orders") Data 3
                 .tab-pane(id="settings") Data 4
+    .modal.fade(id="newProductDialog")
+        .modal-dialog.modal-dialog-centered
+            .modal-content
+                .modal-body 
+                    h1.mb-4 New Product
+                    form(action="/admin/create-product" method="POST")
+                        .form-group
+                            input.form-control(type="text" placeholder="Product Name" name="title")
+                            textarea.form-control.mt-4(type="text" placeholder="Product Description" name="description")
+                            input.form-control.mt-4.col-4(placeholder="0.00" type="number" name="price")
+                        button.btn.btn-success(type="submit") Create
