@@ -1,15 +1,22 @@
 var User = require('../models/user');
 
 exports.view_account = function(req, res) {
-    res.render('account', {user: req.session.user});
+    res.render('account', {session: req.session});
 }
 
 exports.view_login = function(req, res) {
     if(req.session.user) {
         res.render('account')
     } else {
-        res.render('login');
+        res.render('login', {session: req.session});
     }
+}
+
+exports.logout_user = function(req, res) {
+    if(req.session) {
+        req.session.destroy();
+    }
+    res.redirect("/");
 }
 
 exports.login_user = function(req, res) {
@@ -25,17 +32,17 @@ exports.login_user = function(req, res) {
                     res.redirect('/');
                 } else {
                     console.log(user.password + ":" + req.body.password);
-                    res.render('login', {errmsg: 'Username or password were incorrect', user: req.session.user})
+                    res.render('login', {errmsg: 'Username or password were incorrect', session: req.session})
                 }
             });
         } else {
-            res.render('login', {errmsg: 'Username or password were incorrect', user: req.session.user});
+            res.render('login', {errmsg: 'Username or password were incorrect', session: req.session});
         }
     });
 }
 
 exports.view_register = function(req, res) {
-    res.render('register');
+    res.render('register', {session: req.session});
 }
 
 exports.create_account = function(req, res) {
@@ -53,17 +60,14 @@ exports.create_account = function(req, res) {
                         password: req.body.password
                     });
                     user.save(function(err) {
-                        user.comparePassword(user.password, function(err, isMatch) {
-                            console.log(isMatch)
-                        });
                         console.log(user.password);
-                        res.render('register', {msg: 'Account Created Successfully', user: req.session.user});
+                        res.render('register', {msg: 'Account Created Successfully', session: req.session});
                     });
                 } else {
-                    res.render('register', {errmsg : 'Username already exists', user: req.session.user})
+                    res.render('register', {errmsg : 'Username already exists', session: req.session})
                 }
             } else {
-                res.render('register', {errmsg : 'Illegal character in username', user: req.session.user})
+                res.render('register', {errmsg : 'Illegal character in username', session: req.session})
             }
         });
     }

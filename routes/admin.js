@@ -9,11 +9,13 @@ var productController = require('../controllers/productController');
 router.get('/dashboard', function(req, res) {
     User.find({}, function(err, users) {
         Product.find({}, function(err, products){
-            res.render('admin-dashboard', {user: req.session.user, users: users, products: products})
+            res.render('admin-dashboard', {session: req.session, users: users, products: products})
         });
     });
 });
 
 router.post('/create-product', productController.create_product);
+
+router.post('/delete-product/:id', productController.delete_product);
 
 module.exports = router;

@@ -29,7 +29,7 @@ router.use('/product', productRouter);
 router.use('/faq', faqRouter);
 
 router.use('/', function(req, res){
-    res.render('index', {user: req.session.user})
+    res.render('index', {session: req.session})
 });
 
 module.exports = router;

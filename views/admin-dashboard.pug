@@ -7,13 +7,13 @@ block content
                 a.nav-link.active.justify-content-between.d-flex.align-items-center(href="#users" data-toggle="list")
                     span
                         span Users
-                    span.badge.badge-pill.badge-primary 11
+                    span.badge.badge-pill.badge-primary=users.length
                 a.nav-link.justify-content-between.d-flex.align-items-center(href="#products" data-toggle="pill")
                     span Products
-                    span.badge.badge-pill.badge-primary 3
+                    span.badge.badge-pill.badge-primary=products.length
                 a.nav-link.justify-content-between.d-flex.align-items-center(href="#orders" data-toggle="list")
                     span Orders
-                    span.badge.badge-pill.badge-primary 128
+                    span.badge.badge-pill.badge-primary 0
                 a.nav-link.justify-content-between.d-flex.align-items-center(href="#settings" data-toggle="list")
                     span Settings
                     span.fas.fa-cogs
@@ -36,7 +36,15 @@ block content
                         row
                             ul.list-group.mt-2
                                 each product in products
-                                    li.list-group-item=product.title
+                                    a.list-group-item.list-group-item-action.justify-content-between.d-flex(href="/product/" + product._id)
+                                        h4=product.title
+                                        form(action="/admin/delete-product/" + product._id method="POST")
+                                            .btn-group
+                                                //ADD Modal
+                                                button.btn.btn-secondary.btn-sm
+                                                    span.fas.fa-edit
+                                                button.btn.btn-danger.btn-sm(type="submit")
+                                                        span.fas.fa-trash
                             
                 .tab-pane(id="products") 
                 .tab-pane(id="orders") Data 3
