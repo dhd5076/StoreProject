@@ -15,12 +15,12 @@ block content
                     th.text-right Subtotal
             tbody
                 if session.cart
-                    each product in session.cart
+                    each item in session.cart
                         tr
-                            th=product.name
-                            td.text-right=product.name
-                            td.text-right=product.name
-                            td.text-right=product.name
+                            th=item.product.title
+                            td.text-right=item.product.price.toFixed(2)
+                            td.text-right=item.quantity
+                            td.text-right=(parseFloat(item.product.price) * parseFloat(item.quantity)).toFixed(2)
     .row
         .col-12.pr-1.pt-2
             button.btn.btn-success.float-right.btn-md Checkout

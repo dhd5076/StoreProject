@@ -12,5 +12,6 @@ block content
                         .card-text
                             p=product.price
                             .d-flex.justify-content-between
-                                a.btn.btn-success(href='/cart/add/' + product._id) Add To Cart
+                                form(action='/cart/add/' + product._id method="POST")
+                                    button.btn.btn-success(type="submit") Add To Cart
                                 a.btn.btn-secondary(href='/product/' + product._id) View

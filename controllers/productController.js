@@ -30,9 +30,13 @@ exports.delete_product = function(req, res) {
 
 exports.add_to_cart = function(req, res) {
     Product.findOne({_id: req.params.id}, function(err, product){
+        if(!req.session.cart) {
+            req.session.cart = [];
+        }
         req.session.cart.push({
             product: product,
             quantity: 1
         });
+        res.redirect('/cart');
     });
 }
