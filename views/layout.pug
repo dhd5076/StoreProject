@@ -1,7 +1,7 @@
 doctype html
 html
   head
-    title= title
+    title AeroPept
     link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css')
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
     link(rel="stylesheet" type="text/css" href="/stylesheets/style.css" )
@@ -38,7 +38,12 @@ html
               a.btn.btn-primary.mr-2(href="/account/login") Login
             a.btn.btn-secondary(href="/cart")
               i.fas.fa-shopping-cart.mr-2
-              span.badge.badge-info 2
+              span.badge.badge-info
+                if session.cart
+                  span=session.cart.length
+                else
+                  span 0
+
             
       .container.mt-3
         block content

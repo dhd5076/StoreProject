@@ -1,7 +1,13 @@
 var User = require('../models/user');
 
 exports.view_account = function(req, res) {
-    res.render('account', {session: req.session});
+    if(req.params.id) {
+        User.findOne({ _id: req.params.id }, function(err, user) {
+            res.render('account', {session: req.session});
+        });
+    } else {
+        res.render('account', {session: req.session});
+    }
 }
 
 exports.view_login = function(req, res) {
@@ -71,4 +77,10 @@ exports.create_account = function(req, res) {
             }
         });
     }
+}
+
+exports.delete_account = function(req, res) {
+    User.findByIdAndDelete(req.params.id, function(err, user) {
+        res.redirect('/admin/dashboard/#users');
+    });
 }

@@ -5,6 +5,7 @@ var User = require('../models/user');
 var Product = require('../models/product');
 
 var productController = require('../controllers/productController');
+var userController = require('../controllers/userController');
 
 router.get('/dashboard', function(req, res) {
     User.find({}, function(err, users) {
@@ -15,7 +16,8 @@ router.get('/dashboard', function(req, res) {
 });
 
 router.post('/create-product', productController.create_product);
-
 router.post('/delete-product/:id', productController.delete_product);
+
+router.post('/delete-account/:id', userController.delete_account);
 
 module.exports = router;
