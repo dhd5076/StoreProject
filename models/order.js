@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;
 
-var Product = required('./product');
+var ProductSchema = require('./product').schema;
 
 var OrderSchema = mongoose.Schema({
     _id: {
@@ -13,10 +13,20 @@ var OrderSchema = mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    invoice: {
-        type: Schema.Types.Mixed,
+    invoice: [{
+        product: {
+            type: ProductSchema,
+            required: true
+        },
+        quantity: {
+            type: Number,
+            required: true
+        }
+    }],
+    shipping_address: {
+        type: String,
         required: true
     }
 });
 
-module.exports = mongoose.model('Product', OrderSchema);
+module.exports = mongoose.model('Order', OrderSchema);

@@ -1,11 +1,13 @@
 var Order = require('../models/order');
 
-exports.create_product = function(req, res) {
-    var product = new Product({
-        title: req.body.title,
-        description: req.body.description,
-        price: req.body.price
+exports.view_checkout = function(req, res) {
+    res.render('checkout', {session: req.session});
+}
+
+exports.create_order = function(req, res) {
+    var order = new Order({
+        invoice : req.session.cart,
+        shipping_address : req.body.shipping_address,
+        billing_address : req.body.billing_address
     });
-    product.save();
-    res.redirect('/product/' + product._id);
 }

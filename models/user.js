@@ -37,20 +37,6 @@ var UserSchema = mongoose.Schema({
             type: String,
             required: false
         }
-    },
-    billing_address: {
-        line_1: {
-            type: String,
-            required: false
-        },
-        line_2:  {
-            type: String,
-            required: false
-        },
-        line_3: {
-            type: String,
-            required: false
-        }
     }
 });
 
