@@ -1,0 +1,11 @@
+extends layout
+
+block content
+    .row.mt-0
+        .col
+            img(src="https://via.placeholder.com/500x500")
+        .col
+            h1=product.title
+            h5=product.description
+            h2=product.price
+            button.btn.btn-success.btn-lg(href="#") Add To Cart

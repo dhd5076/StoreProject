@@ -1,10 +1,10 @@
 doctype html
 html
   head
-    title= title
+    title AeroPept
     link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css')
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    link(rel="stylesheet" type="text/css" href="/stylesheets/style.css" )
+    link(rel="stylesheet" type="text/css" href="/stylesheets/style.css")
   body
     .container
       nav.navbar.navbar-light.bg-light.navbar-expand-sm
@@ -19,19 +19,31 @@ html
             li.nav-item.m-1.text-center
               a.nav-link(href="/faq") FAQ
             li.nav-item.m-1.text-center
-              a.nav-link(href="/faq") Contact
+              a.nav-link(href="/contact") Contact
             if loggedIn
               li.nav-item.m-1.text-center
                 a.nav-link(href="/orders") Orders
-          ul.navbar-nav
-            li.nav-item.m-1.text-center
-              if user
-                if user.username == 'admin'
-                  a.btn.btn-danger.mr-2(href="/admin/dashboard") Admin
-              a.btn.btn-secondary.mr-2(href="/account") My Account
-              a.btn.btn-secondary(href="/cart") 
-                i.fas.fa-shopping-cart.mr-2
-                span.badge.badge-info 2
+          ul.navbar-nav 
+            if session.user
+              if session.user.username == 'admin'
+                a.btn.btn-danger.mr-2(href="/admin/dashboard") Admin
+            if session.user
+              .dropdown.btn-group
+                button.btn.btn-secondary.dropdown-toggle.mr-2(data-toggle="dropdown" type="button") My Account
+                .dropdown-menu
+                  a.dropdown-item(href="/account") My Account
+                  form(action="/account/logout" method="POST")
+                    button.dropdown-item(type="submit") Logout
+            else
+              a.btn.btn-primary.mr-2(href="/account/login") Login
+            a.btn.btn-secondary(href="/cart")
+              i.fas.fa-shopping-cart.mr-2
+              span.badge.badge-info
+                if session.cart
+                  span=session.cart.length
+                else
+                  span 0
+
             
       .container.mt-3
         block content

@@ -3,10 +3,6 @@ var router = express.Router();
 
 var productController = require('../controllers/productController');
 
-router.get('/', function(req, res) {
-    res.render('cart', {session: req.session});
-});
-
-router.post('/add/:id', productController.add_to_cart);
+router.use('/:id', productController.view_product);
 
 module.exports = router;

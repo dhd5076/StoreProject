@@ -1,0 +1,123 @@
+extends layout
+
+block content
+    .row
+        h1 Checkout
+    form(action="/order/checkout")
+        .row
+            .col-4
+                .card 
+                    .card-header
+                        h4 Review Order
+                    .card-body.ml-0.pl-0
+                        if session.cart
+                            ul.list-group-flush.pl-0.ml-0
+                                each item in session.cart
+                                    li.list-group-item.m-0
+                                        img.img-thumbnail.ml-0.mr-2(src="https://via.placeholder.com/64x64")
+                                        span=item.quantity + "x" + ' - '
+                                        span.ml-1=item.product.title
+                        a.btn.btn-primary.m-2.col-12(href="") Edit Order
+                    .card-footer
+                        .row.justify-content-between.m-2
+                            strong Subtotal
+                            strong $39.99
+            .col-4
+                .card
+                    .card-header
+                        h4 Shipping Address
+                    .card-body
+                        .form-row
+                            .form-group.col-6
+                                input.form-control(placeholder="First Name" type="text")
+                            .form-group.col-6
+                                input.form-control(placeholder="Last Name" type="text")  
+                        .form-row
+                            .form-group.col-12
+                                input.form-control(placeholder="Phone Number" type="tel")
+                        .form-row
+                            .form-group.col-12
+                                input.form-control(placeholder="Street Address" type="text")
+                        .form-row
+                            .form-group.col-12
+                                input.form-control(placeholder="Apartment, Building, Unit, etc." type="text")
+                        .form-row
+                            .form-group.col-6
+                                input.form-control(placeholder="City" type="text")
+                            .form-group.col-6
+                                select.form-control
+                                    option(value='AL') Alabama
+                                    option(value='AK') Alaska
+                                    option(value='AZ') Arizona
+                                    option(value='AR') Arkansas
+                                    option(value='CA') California
+                                    option(value='CO') Colorado
+                                    option(value='CT') Connecticut
+                                    option(value='DE') Delaware
+                                    option(value='DC') District Of Columbia
+                                    option(value='FL') Florida
+                                    option(value='GA') Georgia
+                                    option(value='HI') Hawaii
+                                    option(value='ID') Idaho
+                                    option(value='IL') Illinois
+                                    option(value='IN') Indiana
+                                    option(value='IA') Iowa
+                                    option(value='KS') Kansas
+                                    option(value='KY') Kentucky
+                                    option(value='LA') Louisiana
+                                    option(value='ME') Maine
+                                    option(value='MD') Maryland
+                                    option(value='MA') Massachusetts
+                                    option(value='MI') Michigan
+                                    option(value='MN') Minnesota
+                                    option(value='MS') Mississippi
+                                    option(value='MO') Missouri
+                                    option(value='MT') Montana
+                                    option(value='NE') Nebraska
+                                    option(value='NV') Nevada
+                                    option(value='NH') New Hampshire
+                                    option(value='NJ') New Jersey
+                                    option(value='NM') New Mexico
+                                    option(value='NY') New York
+                                    option(value='NC') North Carolina
+                                    option(value='ND') North Dakota
+                                    option(value='OH') Ohio
+                                    option(value='OK') Oklahoma
+                                    option(value='OR') Oregon
+                                    option(value='PA') Pennsylvania
+                                    option(value='RI') Rhode Island
+                                    option(value='SC') South Carolina
+                                    option(value='SD') South Dakota
+                                    option(value='TN') Tennessee
+                                    option(value='TX') Texas
+                                    option(value='UT') Utah
+                                    option(value='VT') Vermont
+                                    option(value='VA') Virginia
+                                    option(value='WA') Washington
+                                    option(value='WV') West Virginia
+                                    option(value='WI') Wisconsin
+                                    option(value='WY') Wyoming
+                        .form-row
+                            .form-group.col-12
+                                input.form-control(placeholder="Zip Code" type="text")
+                        .form-row
+                            .form-group.col-12
+                                select.form-control
+                                    option(value='AL') United States
+            .col-4
+                .card
+                    .card-header
+                        h4 Payment Method
+                    .card-body
+                        .form-row
+                            .form-check
+                                input.form-check-input(type="radio" value="btc" checked)
+                                label.form-check-label 
+                                    h5 Bitcoin
+                                        i.ml-2.fab.fa-bitcoin
+                        .form-row.mt-4
+                            a.btn.btn-success.col-12(href="/order/purchase") Purchase
+
+                    
+    footer
+        script
