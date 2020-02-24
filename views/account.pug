@@ -1,23 +1,31 @@
 extends layout
 
 block content
-    .row.mt-4.justify-content-center
-        h1 My Account
     .row.mt-4
-        .col-3
-            .row.justify-content-between
-                h5 Shipping Address
-                a(href="") Edit
-            span Dylan Dunn
-            br
-            span 2 Celia Dr
-            br
-            span Rochester, NY 14623
-            .row.justify-content-between.mt-2
-                h5 Billing Address
-                a(href="") Edit
-            i Dylan Dunn
-            br
-            i 2 Celia Dr
-            br
-            i Rochester, NY 14623
+        h1 My Account
+    .row.mt-4.justify-content-between
+        .col-6
+            .card 
+                .card-header
+                    h3 Orders
+                .card.body.p-2
+                    i.text-secondary No Orders Yet
+        .col-4
+            .card
+                .card-header
+                    h3 Reset Password
+                .card-body
+                    form(action="" method="POST")
+                        .form-row
+                            .form-group.col-12
+                                input.form-control(type="password" name="old_password" placeholder="Old Password")
+                        .form-row
+                            .form-group.col-12
+                                input.form-control(type="password" name="old_password" placeholder="New Password")
+                        .form-row
+                            .form-group.col-12
+                                input.form-control(type="password" name="old_password" placeholder="Re-Type Password")
+                        .form-row
+                            .col-12.text-right
+                                button.btn.btn-success(type="submit") Change Password
+        

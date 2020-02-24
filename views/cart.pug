@@ -1,10 +1,8 @@
 extends layout
 
 block content
-    .row 
-        .col-lg-3.col-0
-        .col-lg-6
-            p.h3.text-center.font-weight-bold.pb-4 Cart
+    .row.mt-4
+        h1 Cart
     if session.cart
         if session.cart.length > 0
             .row
@@ -34,7 +32,7 @@ block content
                             td.text-right(colspan="5")
                                 span
                                     span.mr-2 Total
-                                    strong= '$' + total
+                                    strong= '$' + total.toFixed(2)
             .row
                 .col-12.pr-1.pt-2
                     a.btn.btn-success.float-right.btn-lg(href='/order/checkout') Checkout
