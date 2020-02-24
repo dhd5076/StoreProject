@@ -29,21 +29,18 @@ block content
                     .card-body
                         .form-row
                             .form-group.col-6
-                                input.form-control(placeholder="First Name" type="text" name="first_name")
+                                input.form-control(placeholder="First Name" type="text" name="first_name" required)
                             .form-group.col-6
-                                input.form-control(placeholder="Last Name" type="text" name="last_name")  
+                                input.form-control(placeholder="Last Name" type="text" name="last_name" required)  
                         .form-row
                             .form-group.col-12
-                                input.form-control(placeholder="Phone Number" type="tel" name="phone_number")
-                        .form-row
-                            .form-group.col-12
-                                input.form-control(placeholder="Street Address" type="text" name="street_address_1")
+                                input.form-control(placeholder="Street Address" type="text" name="street_address_1" required)
                         .form-row
                             .form-group.col-12
                                 input.form-control(placeholder="Apartment, Building, Unit, etc." type="text" name="street_address_2")
                         .form-row
                             .form-group.col-6
-                                input.form-control(placeholder="City" type="text" name="city")
+                                input.form-control(placeholder="City" type="text" name="city" requirec)
                             .form-group.col-6
                                 select.form-control(name="state")
                                     option(value='AL') Alabama
@@ -99,7 +96,7 @@ block content
                                     option(value='WY') Wyoming
                         .form-row
                             .form-group.col-12
-                                input.form-control(name="zipcode" placeholder="Zip Code" type="text")
+                                input.form-control(name="zipcode" placeholder="Zip Code" type="text" required)
                         .form-row
                             .form-group.col-12
                                 select.form-control

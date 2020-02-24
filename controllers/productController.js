@@ -33,10 +33,22 @@ exports.add_to_cart = function(req, res) {
         if(!req.session.cart) {
             req.session.cart = [];
         }
-        req.session.cart.push({
-            product: product,
-            quantity: 1
+
+        var foundMatch = false
+
+        req.session.cart.forEach((cart_item, index) => {
+            if(cart_item.product._id == req.params.id) {
+                req.session.cart[index].quantity++;
+                foundMatch = true;
+            }
         });
+        if(!foundMatch) {
+            req.session.cart.push({
+                product: product,
+                quantity: 1
+            });
+        }
+
         res.redirect('/cart');
     });
 }
@@ -45,6 +57,18 @@ exports.increment_item_in_cart = function(req, res) {
     req.session.cart.forEach((cart_item, index) => {
         if(cart_item.product._id == req.params.id) {
             req.session.cart[index].quantity++;
+        }
+    });
+    res.redirect('/cart')
+}
+
+exports.decrement_item_in_cart = function(req, res) {
+    req.session.cart.forEach((cart_item, index) => {
+        if(cart_item.product._id == req.params.id) {
+            req.session.cart[index].quantity--;
+            if(req.session.cart[index].quantity <= 0) {
+                req.session.cart.splice(index, 1);
+            }
         }
     });
     res.redirect('/cart')

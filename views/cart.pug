@@ -22,19 +22,19 @@ block content
                                 td.text-right=item.product.price.toFixed(2)
                                 td.text-right
                                     .btn-group
-                                        form(action="/cart/decrement/:id" method="POST")
+                                        form(action="/cart/decrement/" + item.product._id method="POST")
                                             button.btn.btn-danger.btn-sm(type="submit") 
                                                 i.fas.fa-minus
                                         strong.mx-2=item.quantity + 'x'
                                         form(action="/cart/increment/" + item.product._id method="POST")
                                             button.btn.btn-success.btn-sm(type="submit") 
                                                 i.fas.fa-plus 
-                                td.text-right=(parseFloat(item.product.price) * parseFloat(item.quantity)).toFixed(2)
+                                td.text-right='$' + (parseFloat(item.product.price) * parseFloat(item.quantity)).toFixed(2)
                         tr
                             td.text-right(colspan="5")
                                 span
                                     span.mr-2 Total
-                                    strong $39.99
+                                    strong= '$' + total
             .row
                 .col-12.pr-1.pt-2
                     a.btn.btn-success.float-right.btn-lg(href='/order/checkout') Checkout
