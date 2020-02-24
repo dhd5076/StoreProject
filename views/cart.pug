@@ -5,22 +5,36 @@ block content
         .col-lg-3.col-0
         .col-lg-6
             p.h3.text-center.font-weight-bold.pb-4 Cart
-    .row
-        table.table
-            thead.bg-light
-                tr
-                    th Product
-                    th.text-right Price
-                    th.text-right Quantity
-                    th.text-right Subtotal
-            tbody
-                if session.cart
-                    each item in session.cart
+    if session.cart
+        if session.cart.length > 0
+            .row
+                table.table.table-bordered
+                    thead.bg-light
                         tr
-                            th=item.product.title
-                            td.text-right=item.product.price.toFixed(2)
-                            td.text-right=item.quantity
-                            td.text-right=(parseFloat(item.product.price) * parseFloat(item.quantity)).toFixed(2)
-    .row
-        .col-12.pr-1.pt-2
-            a.btn.btn-success.float-right.btn-md(href='/order/checkout') Checkout
+                            th Product
+                            th.text-right Price
+                            th.text-right Quantity
+                            th.text-right Subtotal
+                    tbody
+                        each item in session.cart
+                            tr
+                                th=item.product.title
+                                td.text-right=item.product.price.toFixed(2)
+                                td.text-right
+                                    .btn-group
+                                        form(action="/cart/decrement/:id" method="POST")
+                                            button.btn.btn-danger.btn-sm(type="submit") 
+                                                i.fas.fa-minus
+                                        strong.mx-2=item.quantity + 'x'
+                                        form(action="/cart/increment/" + item.product._id method="POST")
+                                            button.btn.btn-success.btn-sm(type="submit") 
+                                                i.fas.fa-plus 
+                                td.text-right=(parseFloat(item.product.price) * parseFloat(item.quantity)).toFixed(2)
+                        tr
+                            td.text-right(colspan="5")
+                                span
+                                    span.mr-2 Total
+                                    strong $39.99
+            .row
+                .col-12.pr-1.pt-2
+                    a.btn.btn-success.float-right.btn-lg(href='/order/checkout') Checkout

@@ -9,4 +9,6 @@ router.get('/', function(req, res) {
 
 router.post('/add/:id', productController.add_to_cart);
 
+router.post('/increment/:id', productController.increment_item_in_cart);
+
 module.exports = router;

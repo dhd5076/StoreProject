@@ -40,3 +40,12 @@ exports.add_to_cart = function(req, res) {
         res.redirect('/cart');
     });
 }
+
+exports.increment_item_in_cart = function(req, res) {
+    req.session.cart.forEach((cart_item, index) => {
+        if(cart_item.product._id == req.params.id) {
+            req.session.cart[index].quantity++;
+        }
+    });
+    res.redirect('/cart')
+}

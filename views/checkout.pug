@@ -3,7 +3,7 @@ extends layout
 block content
     .row
         h1 Checkout
-    form(action="/order/checkout")
+    form(action="/order/purchase" method="POST")
         .row
             .col-4
                 .card 
@@ -17,7 +17,7 @@ block content
                                         img.img-thumbnail.ml-0.mr-2(src="https://via.placeholder.com/64x64")
                                         span=item.quantity + "x" + ' - '
                                         span.ml-1=item.product.title
-                        a.btn.btn-primary.m-2.col-12(href="") Edit Order
+                        a.btn.btn-primary.m-2.col-12(href="/cart") Edit Order
                     .card-footer
                         .row.justify-content-between.m-2
                             strong Subtotal
@@ -29,23 +29,23 @@ block content
                     .card-body
                         .form-row
                             .form-group.col-6
-                                input.form-control(placeholder="First Name" type="text")
+                                input.form-control(placeholder="First Name" type="text" name="first_name")
                             .form-group.col-6
-                                input.form-control(placeholder="Last Name" type="text")  
+                                input.form-control(placeholder="Last Name" type="text" name="last_name")  
                         .form-row
                             .form-group.col-12
-                                input.form-control(placeholder="Phone Number" type="tel")
+                                input.form-control(placeholder="Phone Number" type="tel" name="phone_number")
                         .form-row
                             .form-group.col-12
-                                input.form-control(placeholder="Street Address" type="text")
+                                input.form-control(placeholder="Street Address" type="text" name="street_address_1")
                         .form-row
                             .form-group.col-12
-                                input.form-control(placeholder="Apartment, Building, Unit, etc." type="text")
+                                input.form-control(placeholder="Apartment, Building, Unit, etc." type="text" name="street_address_2")
                         .form-row
                             .form-group.col-6
-                                input.form-control(placeholder="City" type="text")
+                                input.form-control(placeholder="City" type="text" name="city")
                             .form-group.col-6
-                                select.form-control
+                                select.form-control(name="state")
                                     option(value='AL') Alabama
                                     option(value='AK') Alaska
                                     option(value='AZ') Arizona
@@ -99,11 +99,11 @@ block content
                                     option(value='WY') Wyoming
                         .form-row
                             .form-group.col-12
-                                input.form-control(placeholder="Zip Code" type="text")
+                                input.form-control(name="zipcode" placeholder="Zip Code" type="text")
                         .form-row
                             .form-group.col-12
                                 select.form-control
-                                    option(value='AL') United States
+                                    option(value='US') United States
             .col-4
                 .card
                     .card-header
@@ -111,12 +111,12 @@ block content
                     .card-body
                         .form-row
                             .form-check
-                                input.form-check-input(type="radio" value="btc" checked)
+                                input.form-check-input(type="radio" value="btc" name="payment_method" checked)
                                 label.form-check-label 
                                     h5 Bitcoin
                                         i.ml-2.fab.fa-bitcoin
                         .form-row.mt-4
-                            a.btn.btn-success.col-12(href="/order/purchase") Purchase
+                            button.btn.btn-success.col-12(type="submit") Purchase
 
                     
     footer

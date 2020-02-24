@@ -5,9 +5,9 @@ exports.view_checkout = function(req, res) {
 }
 
 exports.create_order = function(req, res) {
-    var order = new Order({
-        invoice : req.session.cart,
-        shipping_address : req.body.shipping_address,
-        billing_address : req.body.billing_address
-    });
+    shipping_address = 
+                    req.body.first_name + ' ' + req.body.last_name + '\n' +
+                    req.body.street_address_1 + ' ' + req.body.street_address_2 + '\n' +
+                    req.body.city + ', ' + req.body.state + ' ' + req.body.zipcode;
+    console.log(shipping_address); 
 }
