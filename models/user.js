@@ -12,31 +12,9 @@ var UserSchema = mongoose.Schema({
         type: String,
         required: [true, 'Username Required']
     },
-    firstname: {
-        type: String,
-        required: [true, 'First Name Required']
-    },
-    lastname: {
-        type: String,
-        required: [true, 'Last Name Required']
-    },
     password: {
         type: String,
         required: [true, 'Password Required']
-    },
-    shipping_address: {
-        line_1: {
-            type: String,
-            required: false
-        },
-        line_2: {
-            type: String,
-            required: false
-        },
-        line_3: {
-            type: String,
-            required: false
-        }
     }
 });
 

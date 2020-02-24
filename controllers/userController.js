@@ -37,7 +37,6 @@ exports.login_user = function(req, res) {
                     req.session.save();
                     res.redirect('/');
                 } else {
-                    console.log(user.password + ":" + req.body.password);
                     res.render('login', {errmsg: 'Username or password were incorrect', session: req.session})
                 }
             });
@@ -52,16 +51,12 @@ exports.view_register = function(req, res) {
 }
 
 exports.create_account = function(req, res) {
-    if( req.body.firstname &&
-        req.body.lastname  &&
-        req.body.username  &&
+    if( req.body.username  &&
         req.body.password) {
         User.find({username : req.body.username}, function(err, users) {
             if(!req.body.username.includes(' ')) {
                 if(users.length == 0) {
                     var user = new User({
-                        firstname: req.body.firstname,
-                        lastname: req.body.lastname,
                         username: req.body.username,
                         password: req.body.password
                     });

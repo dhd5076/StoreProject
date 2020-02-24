@@ -13,7 +13,7 @@ block content
                     span.badge.badge-pill.badge-primary=products.length
                 a.nav-link.justify-content-between.d-flex.align-items-center(href="#orders" data-toggle="list")
                     span Orders
-                    span.badge.badge-pill.badge-primary 0
+                    span.badge.badge-pill.badge-primary=orders.length
                 a.nav-link.justify-content-between.d-flex.align-items-center(href="#settings" data-toggle="list")
                     span Settings
                     span.fas.fa-cogs
@@ -26,16 +26,13 @@ block content
                             each account in users
                                 a.list-group-item.list-group-item-action.justify-content-between.d-flex(href='/account/' + account._id)
                                     div
-                                        span=account.firstname + ' ' + account.lastname
+                                        span=account.username
                                         if account.username == 'admin'
                                             span.badge.badge-pill.badge-danger.ml-2 Admin
                                     form.inline-form(action="/admin/delete-account/" + account._id method="POST")
                                             .btn-group
-                                                //TODO Add user edit modal
-                                                button.btn.btn-secondary.btn-sm
-                                                    span.fas.fa-edit
                                                 button.btn.btn-danger.btn-sm(type="submit")
-                                                        span.fas.fa-trash
+                                                        span Delete
                 .tab-pane(id="products") 
                     .col-12
                         row.justify-content-between.d-flex
@@ -48,14 +45,22 @@ block content
                                         h4=product.title
                                         form(action="/admin/delete-product/" + product._id method="POST")
                                             .btn-group
-                                                //TODO Add product edit modal
-                                                button.btn.btn-secondary.btn-sm
-                                                    span.fas.fa-edit
                                                 button.btn.btn-danger.btn-sm(type="submit")
-                                                        span.fas.fa-trash
+                                                        span Delete
                             
-                .tab-pane(id="products") 
-                .tab-pane(id="orders") Data 3
+                .tab-pane(id="orders")
+                    .col-12
+                        row.justify-content-between.d-flex
+                            h1 Orders
+                        row
+                            ul.list-group.mt-2
+                                each order in orders
+                                    a.list-group-item.list-group-item-action.justify-content-between.d-flex(href="/order/view/" + order._id)
+                                        h4=order._id.toString().substring(0,10)
+                                        form(action="/admin/delete-product/" + order._id method="POST")
+                                            .btn-group
+                                                button.btn.btn-danger.btn-sm(type="submit") Cancel
+
                 .tab-pane(id="settings") Data 4
     .modal.fade(id="newProductDialog")
         .modal-dialog.modal-dialog-centered

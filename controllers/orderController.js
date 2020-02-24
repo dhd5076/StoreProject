@@ -1,7 +1,13 @@
 var Order = require('../models/order');
 
 exports.view_checkout = function(req, res) {
-    res.render('checkout', {session: req.session});
+    var total = 0;
+    if(req.session.cart) {
+        req.session.cart.forEach((cart_item) => {
+            total += parseFloat(cart_item.product.price * cart_item.quantity);
+        });
+    }
+    res.render('checkout', {session: req.session, total: total});
 }
 
 exports.create_order = function(req, res) {
@@ -15,13 +21,18 @@ exports.create_order = function(req, res) {
    });
    order.save();
    res.redirect('/order/view/' + order._id);
-   console.log(order);
 }
 
 exports.view_order = function(req, res) {
     Order.findOne({_id: req.params.id}, function(err, order) {
         if(order) {
-            res.render('order', {session: req.session, order: order})
+            var total = 0;
+            if(order.invoice) {
+                order.invoice.forEach((item) => {
+                    total += parseFloat(item.product.price * item.quantity);
+                });
+            }
+            res.render('order', {session: req.session, order: order, total: total})
         } else {
             res.redirect('/');
         }

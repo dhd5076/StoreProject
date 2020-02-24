@@ -2,11 +2,37 @@ extends layout
 
 block content
     .row.mt-0
-        .col
-            img(src="https://via.placeholder.com/500x500")
-        .col
-            h1=product.title
-            h5=product.description
-            h2=product.price
-            form(action='/cart/add/' + product._id method="POST")
-                button.btn.btn-success(type="submit") Add To Cart
+        h1='Order #' + order._id.toString().substring(0,9)
+    .row
+        table.table.table-bordered
+            thead.bg-light
+                tr
+                    th Product
+                    th.text-right Price
+                    th.text-right Quantity
+                    th.text-right Subtotal
+            tbody
+                each item in order.invoice
+                    tr
+                        th=item.product.title
+                        td.text-right=item.product.price.toFixed(2)
+                        td.text-right
+                            .btn-group
+                                strong.mx-2=item.quantity + 'x'
+                        td.text-right='$' + (parseFloat(item.product.price) * parseFloat(item.quantity)).toFixed(2)
+                tr
+                    td
+                    td
+                    td
+                    td.text-right
+                        span
+                            span.mr-2 Total
+                            strong= '$' + total.toFixed(2)
+                tr 
+                    td
+                        h3 Shipping Address
+                        each line in order.shipping_address.split(/\n/g)
+                            span=line
+                            br
+                    td(colspan="4")
+                        span Send 0.00000567 BTC to bc1q2rfnv0auf45jcpzjzuxe3y562f69yhwlahh8e7
